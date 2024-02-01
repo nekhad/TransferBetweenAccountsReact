@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import {useAuth} from './App';
 const Registration = ({ handleRegistration }) => {
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
+  const [firstname, setName] = useState('');
+  const [lastname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {setSendData}=useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -14,8 +15,8 @@ const Registration = ({ handleRegistration }) => {
     try {
       // Make a POST request to the registration API
       const response = await axios.post('http://localhost:9292/api/v1/auth/register', {
-        name,
-        surname,
+        firstname,
+        lastname,
         email,
         password
       });
@@ -28,18 +29,20 @@ const Registration = ({ handleRegistration }) => {
       // Handle error message (display to the user, etc.)
     }
   };
-
+  useEffect(() => {
+    setSendData(email);
+  }, [email]);
   return (
     <div>
       <h2>Registration</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          <input type="text" value={firstname} onChange={(e) => setName(e.target.value)} />
         </div>
         <div>
           <label>Surname:</label>
-          <input type="text" value={surname} onChange={(e) => setSurname(e.target.value)} />
+          <input type="text" value={lastname} onChange={(e) => setSurname(e.target.value)} />
         </div>
         <div>
           <label>Email:</label>
