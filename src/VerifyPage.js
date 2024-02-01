@@ -48,7 +48,6 @@ const VerifyPage = ({ email }) => {
   const [verificationCode, setVerificationCode] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-
   const handleVerify = async (e) => {
     e.preventDefault();
     try {
