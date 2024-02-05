@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {useAuth} from './App';
+import './Registration.css'; // Import your CSS file
+
 const Registration = ({ handleRegistration }) => {
   const [firstname, setName] = useState('');
   const [lastname, setSurname] = useState('');
@@ -33,9 +35,9 @@ const Registration = ({ handleRegistration }) => {
     setSendData(email);
   }, [email]);
   return (
-    <div>
+    <div className="container">
       <h2>Registration</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
           <input type="text" value={firstname} onChange={(e) => setName(e.target.value)} />
@@ -56,6 +58,7 @@ const Registration = ({ handleRegistration }) => {
       </form>
     </div>
   );
+  
 };
 
 export default Registration;
