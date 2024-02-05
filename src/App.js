@@ -6,8 +6,11 @@ import React, { useContext, useState } from 'react';
 import Login from './Login';
 import Registration from './Registration';
 import Dashboard from './Dashboard';
+import TransferPage from './TransferPage';
 import { Route, Router, Routes } from 'react-router-dom';
 import VerifyPage from './VerifyPage';
+import CurrencyRates from './CurrencyRates';
+import AccountForm from './AccountForm';
 const AuthContext=React.createContext(
 
 );
@@ -39,7 +42,10 @@ const App = () => {
   <Route path="/login" element={<Login data={data}/>}/>
   <Route path="/registration" element={<Registration/>}/>
   <Route path="/dashboard" element={<Dashboard/>}/>
+  <Route path="/TransferPage" element={<TransferPage/>}/>
   <Route path="/verify" element={<VerifyPage/>}/>
+  <Route path="/currencies" element={<CurrencyRates/>}/>
+  <Route path="/account" element={<AccountForm/>}/>
 </Routes>
 </AuthContext.Provider>
   );

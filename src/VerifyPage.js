@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './App';
+import './VerifyPage.css';
 const VerifyPage = ({ email }) => {
   const [verificationCode, setVerificationCode] = useState('');
   const [error, setError] = useState('');
@@ -27,19 +28,22 @@ const VerifyPage = ({ email }) => {
   };
 
   return (
-    <div>
-      <h2>Verify Your Email</h2>
-      <p>An email with a verification code has been sent to {email}. Please enter the code below:</p>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleVerify}>
-        <div>
-          <label>Verification Code:</label>
-          <input type="text" value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} />
-        </div>
-        <button type="submit">Verify</button>
-      </form>
+    <div className="container">
+      <div className="form">
+        <h2>Verify Your Email</h2>
+        <p>An email with a verification code has been sent to {email}. Please enter the code below:</p>
+        {error && <p className="error-message">{error}</p>}
+        <form onSubmit={handleVerify}>
+          <div>
+            <label>Verification Code:</label>
+            <input type="text" value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} />
+          </div>
+          <button type="submit">Verify</button>
+        </form>
+      </div>
     </div>
   );
+  
 };
 
 export default VerifyPage;
