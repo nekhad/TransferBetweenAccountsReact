@@ -12,16 +12,13 @@ const VerifyPage = ({ email }) => {
   const handleVerify = async (e) => {
     e.preventDefault();
     try {
-      // Make a POST request to the verify API
       const response = await axios.post('http://localhost:9292/api/v1/auth/verify', {
         email: sendData,
         verificationCode: verificationCode
       });
       navigate('/login');
-      // Handle success (e.g., navigate to dashboard)
       console.log('Verification successful:', response.data);
     } catch (error) {
-      // Handle error if verification fails
       setError('Verification failed. Please check your verification code and try again.');
       console.error('Verification failed:', error.response.data);
     }
@@ -43,7 +40,7 @@ const VerifyPage = ({ email }) => {
       </div>
     </div>
   );
-  
+
 };
 
 export default VerifyPage;
