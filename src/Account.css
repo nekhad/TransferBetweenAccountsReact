@@ -1,0 +1,30 @@
+.accounts-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.accounts-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.accounts-table th,
+.accounts-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.accounts-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.accounts-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.accounts-table tr:hover {
+    background-color: #f2f2f2;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './CurrencyRates.css'; // Import the CSS file
+import './CurrencyRates.css';
 
 const CurrencyRates = () => {
   const [currencyData, setCurrencyData] = useState([]);
@@ -9,19 +9,19 @@ const CurrencyRates = () => {
     const fetchCurrencyData = async () => {
       try {
         const response = await axios.get('http://localhost:9292/api/currencies/get-currency');
-        setCurrencyData(response.data); // Assuming the response contains an array of currency data
+        setCurrencyData(response.data);
       } catch (error) {
         console.error('Error fetching currency data:', error);
       }
     };
 
     fetchCurrencyData();
-  }, []); // Empty dependency array to fetch data only once when the component mounts
+  }, []);
 
   return (
-    <div className="currency-container"> {/* Apply container styles */}
+    <div className="currency-container">
       <h2>Currency Rates</h2>
-      <table className="currency-table"> {/* Apply table styles */}
+      <table className="currency-table">
         <thead>
           <tr>
             <th>Currency Type</th>

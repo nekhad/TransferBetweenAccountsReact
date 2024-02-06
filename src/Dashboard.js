@@ -6,10 +6,6 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('Accounts');
   const navigate = useNavigate();
 
-  const handleTabChange = (tabName) => {
-    setActiveTab(tabName);
-  };
-
   const handleTransferTabClick = () => {
     navigate('/transferPage');
     setActiveTab('Transfer');
@@ -18,6 +14,11 @@ const Dashboard = () => {
   const handleCurrenciesTabClick = () => {
     navigate('/currencies');
     setActiveTab('Currency');
+  };
+
+  const handleAccountsTabClick = () => {
+    navigate('/accounts');
+    setActiveTab('Accounts');
   };
 
   const handleCreateAccountClick = () => {
@@ -36,7 +37,7 @@ const Dashboard = () => {
       <div className="tabs">
         <button
           className={activeTab === 'Accounts' ? 'active' : ''}
-          onClick={() => handleTabChange('Accounts')}
+          onClick={() => handleAccountsTabClick('Accounts')}
         >
           Accounts
         </button>
