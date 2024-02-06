@@ -1,7 +1,8 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './Login.css';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,17 +17,11 @@ const Login = () => {
         email: email,
         password: password
       });
-
-      // Assuming the server responds with a token upon successful login
       const token = response.data.token;
-
-      // Store the token in local storage or session storage
       localStorage.setItem('token', token);
 
-      // Redirect to a different page upon successful login
       navigate('/dashboard');
     } catch (error) {
-      // Handle error when login fails
       setError('Invalid email or password');
     }
   };
