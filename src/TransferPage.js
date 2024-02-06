@@ -9,7 +9,6 @@ const TransferPage = () => {
     const [amount, setAmount] = useState('');
 
     useEffect(() => {
-        // Fetch currencies from the API
         const fetchCurrencies = async () => {
             try {
                 const response = await fetch('http://localhost:9292/api/currencies/read');
@@ -54,7 +53,7 @@ const TransferPage = () => {
                 body: JSON.stringify({
                     toAccountNumber,
                     fromAccountNumber,
-                    currency: selectedCurrency, // Use selectedCurrency instead of currency
+                    currency: selectedCurrency,
                     amount
                 })
             });
@@ -64,7 +63,6 @@ const TransferPage = () => {
             }
 
             console.log('Funds transferred successfully');
-            // Add any further logic here after successful transfer
         } catch (error) {
             console.error('Error transferring funds:', error.message);
         }
