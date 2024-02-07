@@ -19,7 +19,7 @@ const Login = () => {
       });
       const token = response.data.token;
       localStorage.setItem('token', token);
-
+        
       navigate('/dashboard');
     } catch (error) {
       setError('Invalid email or password');
