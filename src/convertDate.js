@@ -4,7 +4,7 @@ export function convertDateFormat(input) {
     const day = input.substring(6, 8);
     const hour = input.substring(8, 10);
     const minute = input.substring(10, 12);
-    const formattedDate = `${day}.${month}.${year}`;
+    const formattedDate = `${day}/${month}/${year}`;
     const formattedTime = `${hour}:${minute}`;
     const result = `${formattedDate}`;
     return result;
