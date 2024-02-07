@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Account.css';
-import Card from './assets/new_card-removebg-preview.png'
+import Card from './assets/card-main-part.png'
+import CardBack from './assets/card-back-part.png'
+
 import { convertAccountNumber, convertDateFormat } from './convertDate';
 const AccountsPage = () => {
     const [accountsData, setAccountsData] = useState([]);
@@ -27,7 +29,7 @@ const AccountsPage = () => {
 
         fetchAccountsData();
     }, []);
-
+let i = 0;
     return (
         <div>
             <h2>Accounts Page</h2>
@@ -39,11 +41,18 @@ const AccountsPage = () => {
                             width: '350px',
                         }}>
                             <img src={Card} style={{ width: '100%', height: '100%' }} />
-                            <p style={{ position: 'absolute', top: '90px', left: '90px', zIndex: '6', color: 'white', fontSize: '17px' }}   >{convertAccountNumber(item.accountNumber)}</p>
-                            <p style={{ position: 'absolute', top: '120px', left: '170px', zIndex: '6', color: 'white', fontSize: '17px', fontFamily: 'Open Sans, sans-serif' }}>{item.lastName + " " + item.firstName}</p>
-                            <p style={{ position: 'absolute', top: '135px', left: '80px', zIndex: '6', color: 'white', fontSize: '14px' }}   >CVC {item.cvc}</p>
-                            <p style={{ position: 'absolute', top: '165px', left: '150px', zIndex: '6', color: 'white', fontSize: '14px' }}   >{convertDateFormat(item.expirationDate)}</p>
+                            <p style={{ position: 'absolute', top: '130px', left: '53px', zIndex: '6', color: 'black', fontSize: '25px' }}   >{convertAccountNumber(item.accountNumber)}</p>
+                            <p style={{ position: 'absolute', top: '60px', left: '150px', zIndex: '6', color: 'black', fontSize: '23px', fontFamily: 'Open Sans, sans-serif' }}>{item.lastName + " " + item.firstName}</p>
+                            <p style={{ position: 'absolute', top: '100px', left: '220px', zIndex: '6', color: 'black', fontSize: '15px' }}   >{convertDateFormat(item.expirationDate)}</p>
+
+                            <img src={CardBack} style={{ width: '100%', height: '100%' }} />
+                            <p style={{ position: 'absolute', top: '310px', left: '270px', zIndex: '6', color: 'gold', fontSize: '14px', fontFamily: 'Open Sans, sans-serif'}}   >{item.cvc}</p>
+                            <p style={{ position: 'absolute', top: '465px', left: '130px', zIndex: '6', color: 'black', fontSize: '18px', fontFamily: 'Open Sans, sans-serif'}}>{++index} -ci Kart</p>
+                            <p style={{ position: 'absolute', top: '485px', left: '30px', zIndex: '6', color: 'black', fontSize: '14px', fontFamily: 'Open Sans, sans-serif'}}>-------------------------------------------------------------</p>
+                             
                         </div>
+                        
+                        
                     )
                 })
             }
