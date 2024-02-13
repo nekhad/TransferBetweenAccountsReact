@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from './App';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './VerifyPage.css';
-const VerifyPage = ({ email }) => {
+
+const VerifyPage = () => {
   const [verificationCode, setVerificationCode] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const { sendData } = useAuth();
+  const location = useLocation();
+
+  // Extract email from query parameter
+  const email = new URLSearchParams(location.search).get('email');
 
   const handleVerify = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:9292/api/v1/auth/verify', {
-        email: sendData,
-        verificationCode: verificationCode
+        email,
+        verificationCode
       });
       navigate('/login');
       console.log('Verification successful:', response.data);
@@ -40,7 +43,6 @@ const VerifyPage = ({ email }) => {
       </div>
     </div>
   );
-
 };
 
 export default VerifyPage;

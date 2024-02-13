@@ -1,28 +1,27 @@
-import React, { useContext, useState } from 'react';
-
-
+import React, { useContext, useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Login from './Login';
 import Registration from './Registration';
 import Dashboard from './Dashboard';
 import TransferPage from './TransferPage';
-import { Route, Router, Routes } from 'react-router-dom';
 import VerifyPage from './VerifyPage';
 import CurrencyRates from './CurrencyRates';
 import AccountForm from './AccountForm';
 import Accounts from './Accounts';
-const AuthContext = React.createContext(
 
-);
+const AuthContext = React.createContext();
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [sendData, setSendData] = useState('');
-  const [data, setData] = useState({
-    name: 'salam',
-    onchange: (sa) => {
-      console.log(sa);
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
     }
-  });
+  }, []);
 
   const handleLogin = (credentials) => {
     console.log('Logging in with:', credentials);
@@ -34,16 +33,20 @@ const App = () => {
   };
 
   return (
-    <AuthContext.Provider value={{ sendData, setSendData }}>
+    <AuthContext.Provider value={{ loggedIn }}>
       <Routes>
-        <Route path="/login" element={<Login data={data} />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/TransferPage" element={<TransferPage />} />
         <Route path="/verify" element={<VerifyPage />} />
-        <Route path="/currencies" element={<CurrencyRates />} />
-        <Route path="/account" element={<AccountForm />} />
-        <Route path="/accounts" element={<Accounts />} />
+        {loggedIn ? (
+          <>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/TransferPage" element={<TransferPage />} />
+            <Route path="/currencies" element={<CurrencyRates />} />
+            <Route path="/account" element={<AccountForm />} />
+            <Route path="/accounts" element={<Accounts />} />
+          </>
+        ) : null}
       </Routes>
     </AuthContext.Provider>
   );
